@@ -1,0 +1,2739 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Lunar</name>
+    </assembly>
+    <members>
+        <member name="T:Lunar.ServiceException">
+            <summary>
+            外部サービスの例外を表します。
+            </summary>
+        </member>
+        <member name="M:Lunar.ServiceException.#ctor">
+            <summary>
+            ServiceException の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Lunar.ServiceException.#ctor(System.String)">
+            <summary>
+            メッセージを指定し ServiceException の新しいインスタンスを初期化します。
+            </summary>
+            <param name="message">例外メッセージ。</param>
+        </member>
+        <member name="M:Lunar.ServiceException.#ctor(System.String,System.Exception)">
+            <summary>
+            メッセージと基になる例外を指定し ServiceException の新しいインスタンスを初期化します。
+            </summary>
+            <param name="message">例外メッセ維持。</param>
+            <param name="innerException">基になる例外。</param>
+        </member>
+        <member name="T:Lunar.Relationship">
+            <summary>
+            ユーザの関係を表します。
+            </summary>
+        </member>
+        <member name="T:Lunar.ServiceObject">
+            <summary>
+            外部サービスのオブジェクトを表します。
+            </summary>
+        </member>
+        <member name="F:Lunar.ServiceObject.json">
+            <summary>
+            基になる JSON オブジェクトを取得します。
+            </summary>
+        </member>
+        <member name="M:Lunar.ServiceObject.#ctor(Codeplex.Data.DynamicJson)">
+            <summary>
+            基になる JSON オブジェクトを指定し ServiceObject の新しいインスタンスを初期化します。
+            </summary>
+            <param name="json">基になる JSON オブジェクト。</param>
+        </member>
+        <member name="M:Lunar.Relationship.#ctor(Codeplex.Data.DynamicJson)">
+            <summary>
+            基になる JSON オブジェクトを指定し Relationship の新しいインスタンスを初期化します。
+            </summary>
+            <param name="json">基になる JSON オブジェクト。</param>
+        </member>
+        <member name="P:Lunar.Relationship.SourceUserID">
+            <summary>
+            ソースのユーザ ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Relationship.SourceUserName">
+            <summary>
+            ソースのユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Relationship.SourceFollowingTarget">
+            <summary>
+            ソースが対象をフォローしているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Relationship.SourceBlockingTarget">
+            <summary>
+            ソースが対象をブロックしているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Relationship.TargetFollowingSource">
+            <summary>
+            対象がソースをフォローしているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Relationship.TargetUserID">
+            <summary>
+            対象のユーザ ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Relationship.TargetUserName">
+            <summary>
+            対象のユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.TwitterClient">
+            <summary>
+            Twitter クライアント機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.#ctor">
+            <summary>
+            TwitterClient の新しいインスタンスを初期化します。
+            スレッド一つにつき一つの TwitterClient のみが存在可能です。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.#ctor(Lunar.AccountToken)">
+            <summary>
+            アカウントを指定し、TwitterClient の新しいインスタンスを初期化します。
+            スレッド一つにつき一つの TwitterClient のみが存在可能です。
+            </summary>
+            <param name="authorized">アカウント。</param>
+        </member>
+        <member name="M:Lunar.TwitterClient.#ctor(Lunar.AccountToken,Lunar.StatusCache)">
+            <summary>
+            アカウントおよびキャッシュを指定し、TwitterClient の新しいインスタンスを初期化します。
+            スレッド一つにつき一つの TwitterClient のみが存在可能です。
+            </summary>
+            <param name="authorized">アカウント。</param>
+            <param name="statusCache">キャッシュ。</param>
+        </member>
+        <member name="M:Lunar.TwitterClient.Dispose">
+            <summary>
+            TwitterClient により使用されているすべてのリソースを開放します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.Finalize">
+            <summary>
+            dtor
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.CurrentInstance">
+            <summary>
+            現在のスレッドの TwitterClient コンテキストを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.StatusCache">
+            <summary>
+            キャッシュを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.Authorization">
+            <summary>
+            認証を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.Account">
+            <summary>
+            アカウントを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.Statuses">
+            <summary>
+            つぶやきに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.Lists">
+            <summary>
+            リストに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.DirectMessages">
+            <summary>
+            ダイレクトメッセージに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.Favorites">
+            <summary>
+            お気に入りに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.Users">
+            <summary>
+            ユーザに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.Friendships">
+            <summary>
+            関係に関する機能を提供します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.Blocks">
+            <summary>
+            ブロックに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.RateLimit">
+            <summary>
+            API 制限情報を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterClient.IsAuthorized">
+            <summary>
+            認証されているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.TwitterClient.TwitterStatuses">
+            <summary>
+            つぶやきに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.PublicTimeline">
+            <summary>
+            パブリックタイムラインを取得します。
+            </summary>
+            <returns>パブリックタイムラインのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.PublicTimeline(Lunar.StatusRange)">
+            <summary>
+            指定した範囲のパブリックタイムラインを取得します。
+            </summary>
+            <param name="range">取得範囲。</param>
+            <returns>パブリックタイムラインのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.HomeTimeline">
+            <summary>
+            ホームタイムラインを取得します。
+            </summary>
+            <returns>ホームタイムラインのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.HomeTimeline(Lunar.StatusRange)">
+            <summary>
+            指定した範囲のホームタイムラインを取得します。
+            </summary>
+            <param name="range">取得範囲。</param>
+            <returns>ホームタイムラインのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.RetweetedByMe">
+            <summary>
+            自分の RT を取得します。
+            </summary>
+            <returns>自分の RT。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.RetweetedByMe(Lunar.StatusRange)">
+            <summary>
+            指定した範囲の自分の RT を取得します。
+            </summary>
+            <param name="range">取得範囲。</param>
+            <returns>自分の RT。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.RetweetedToMe">
+            <summary>
+            自分への RT を取得します。
+            </summary>
+            <returns>自分への RT。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.RetweetedToMe(Lunar.StatusRange)">
+            <summary>
+            指定した範囲の自分への RT を取得します。
+            </summary>
+            <param name="range">取得範囲。</param>
+            <returns>自分への RT。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.RetweetsOfMe">
+            <summary>
+            RT された自分のつぶやきを取得します。
+            </summary>
+            <returns>RT された自分のつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.RetweetsOfMe(Lunar.StatusRange)">
+            <summary>
+            指定した範囲の RT された自分のつぶやきを取得します。
+            </summary>
+            <param name="range">取得範囲。</param>
+            <returns>RT された自分のつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.UserTimeline(Lunar.UserID)">
+            <summary>
+            指定したユーザ ID のユーザタイムラインを取得します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <returns>ユーザタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.UserTimeline(Lunar.UserID,Lunar.StatusRange)">
+            <summary>
+            指定したユーザ ID および範囲のユーザタイムラインを取得します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <param name="range">取得範囲。</param>
+            <returns>ユーザタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.UserTimeline(System.String)">
+            <summary>
+            指定したユーザ名のユーザタイムラインを取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>ユーザタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.UserTimeline(System.String,Lunar.StatusRange)">
+            <summary>
+            指定したユーザ名および範囲のユーザタイムラインを取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <param name="range">取得範囲。</param>
+            <returns>ユーザタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Mentions">
+            <summary>
+            返信を取得します。
+            </summary>
+            <returns>返信。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Mentions(Lunar.StatusRange)">
+            <summary>
+            指定した範囲の返信を取得します。
+            </summary>
+            <param name="range">取得範囲。</param>
+            <returns>返信。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Get(Lunar.StatusID)">
+            <summary>
+            指定した ID のつぶやきを取得します。
+            </summary>
+            <param name="id">ID。</param>
+            <returns>つぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Update(System.String)">
+            <summary>
+            指定された内容のつぶやきを投稿します。
+            </summary>
+            <param name="status">本文。</param>
+            <returns>投稿されたつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Update(System.String,Lunar.StatusID)">
+            <summary>
+            返信先を指定して指定された内容のつぶやきを投稿します。
+            </summary>
+            <param name="status">本文。</param>
+            <param name="inReplyToStatusID">返信先の ID。</param>
+            <returns>投稿されたつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Destroy(Lunar.StatusID)">
+            <summary>
+            指定された ID のつぶやきを削除します。
+            </summary>
+            <param name="id">ID。</param>
+            <returns>削除されたつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Retweet(Lunar.StatusID)">
+            <summary>
+            指定された ID のつぶやきを Retweet します。
+            </summary>
+            <param name="id">ID。</param>
+            <returns>Retweet した結果のつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Friends">
+            <summary>
+            フォローしているユーザのつぶやきを取得します。
+            </summary>
+            <returns>フォローしているユーザのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Friends(Lunar.UserID)">
+            <summary>
+            指定されたユーザがフォローしているユーザのつぶやきを取得します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <returns>フォローしているユーザのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Friends(System.String)">
+            <summary>
+            指定されたユーザがフォローしているユーザのつぶやきを取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Followers">
+            <summary>
+            フォローされているユーザのつぶやきを取得します。
+            </summary>
+            <returns>フォローされているユーザのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Followers(Lunar.UserID)">
+            <summary>
+            指定されたユーザがフォローされているユーザのつぶやきを取得します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <returns>フォローされているユーザのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Followers(System.String)">
+            <summary>
+            指定されたユーザがフォローされているユーザのつぶやきを取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>フォローされているユーザのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Search(System.String)">
+            <summary>
+            指定された文字列で Twitter 検索します。
+            </summary>
+            <param name="query">検索文字列。</param>
+            <returns>検索結果。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterStatuses.Search(System.String,Lunar.StatusRange)">
+            <summary>
+            指定された文字列で Twitter 検索します。
+            </summary>
+            <param name="query">検索文字列。</param>
+            <param name="range">取得範囲。</param>
+            <returns>検索結果。</returns>
+        </member>
+        <member name="T:Lunar.TwitterClient.TwitterLists">
+            <summary>
+            リストに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Statuses(Lunar.UserID,Lunar.ListID)">
+            <summary>
+            リストのタイムラインを取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listID">リストの ID。</param>
+            <returns>リストのタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Statuses(Lunar.UserID,Lunar.ListID,Lunar.StatusRange)">
+            <summary>
+            指定した範囲のリストのタイムラインを取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listID">リストの ID。</param>
+            <param name="range">取得範囲。</param>
+            <returns>リストのタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Statuses(Lunar.UserID,System.String)">
+            <summary>
+            リストのタイムラインを取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listName">リスト名。</param>
+            <returns>リストのタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Statuses(Lunar.UserID,System.String,Lunar.StatusRange)">
+            <summary>
+            指定した範囲のリストのタイムラインを取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listName">リスト名。</param>
+            <param name="range">取得範囲。</param>
+            <returns>リストのタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Statuses(System.String,Lunar.ListID)">
+            <summary>
+            リストのタイムラインを取得します。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listID">リストの ID。</param>
+            <returns>リストのタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Statuses(System.String,Lunar.ListID,Lunar.StatusRange)">
+            <summary>
+            指定した範囲のリストのタイムラインを取得します。
+            </summary>
+            <param name="userName">リストのユーザ ID。</param>
+            <param name="listID">リストの ID。</param>
+            <param name="range">取得範囲。</param>
+            <returns>リストのタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Statuses(System.String,System.String)">
+            <summary>
+            リストのタイムラインを取得します。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listName">リスト名。</param>
+            <returns>リストのタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Statuses(System.String,System.String,Lunar.StatusRange)">
+            <summary>
+            指定した範囲のリストのタイムラインを取得します。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listName">リスト名。</param>
+            <param name="range">取得範囲。</param>
+            <returns>リストのタイムライン。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Create(System.String,Lunar.ListMode,System.String)">
+            <summary>
+            新しいリストを作成します。
+            </summary>
+            <param name="listName">リスト名。</param>
+            <param name="mode">リストの公開種別。</param>
+            <param name="description">リストの解説文。</param>
+            <returns>作成されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Update(Lunar.ListID,System.String,Lunar.ListMode,System.String)">
+            <summary>
+            リストの情報を変更します。省略されたパラメータは変更されません。
+            </summary>
+            <param name="listID">変更するリストの ID。</param>
+            <param name="newListName">新しいリスト名。</param>
+            <param name="mode">新しい公開種別。</param>
+            <param name="description">新しい解説文。</param>
+            <returns>変更されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Update(System.String,System.String,Lunar.ListMode,System.String)">
+            <summary>
+            リストの情報を変更します。省略されたパラメータは変更されません。
+            </summary>
+            <param name="listName">変更するリストの ID。</param>
+            <param name="newListName">新しいリスト名。</param>
+            <param name="mode">新しい公開種別。</param>
+            <param name="description">新しい解説文。</param>
+            <returns>変更されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Index">
+            <summary>
+            現在のアカウントのリストの一覧を取得します。
+            </summary>
+            <returns>リストの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Index(Lunar.UserID)">
+            <summary>
+            指定されたユーザのリストの一覧を取得します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <returns>リストの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Index(System.String)">
+            <summary>
+            指定されたユーザのリストの一覧を取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>リストの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscriptions">
+            <summary>
+            現在のアカウントがフォローしているリストの一覧を取得します。
+            </summary>
+            <returns>フォローしているリストの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscriptions(Lunar.UserID)">
+            <summary>
+            指定されたユーザがフォローしているリストの一覧を取得します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <returns>フォローしているリストの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscriptions(System.String)">
+            <summary>
+            指定されたユーザがフォローしているリストの一覧を取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>フォローしているリストの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscribers(Lunar.UserID,Lunar.ListID)">
+            <summary>
+            リストをフォローしているユーザを取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>リストをフォローしているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscribers(Lunar.UserID,System.String)">
+            <summary>
+            リストをフォローしているユーザを取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listName">リスト名。</param>
+            <returns>リストをフォローしているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscribers(System.String,Lunar.ListID)">
+            <summary>
+            リストをフォローしているユーザを取得します。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>リストをフォローしているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscribers(System.String,System.String)">
+            <summary>
+            リストをフォローしているユーザを取得します。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listName">リスト名。</param>
+            <returns>リストをフォローしているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscribe(Lunar.UserID,Lunar.ListID)">
+            <summary>
+            指定したリストをフォローします。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>フォローしたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscribe(Lunar.UserID,System.String)">
+            <summary>
+            指定したリストをフォローします。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listName">リスト名。</param>
+            <returns>フォローしたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscribe(System.String,Lunar.ListID)">
+            <summary>
+            指定したリストをフォローします。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>フォローしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Subscribe(System.String,System.String)">
+            <summary>
+            指定したリストをフォローします。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listName">リスト名。</param>
+            <returns>フォローしたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Unsubscribe(Lunar.UserID,Lunar.ListID)">
+            <summary>
+            指定したリストをアンフォローします。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>アンフォローしたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Unsubscribe(Lunar.UserID,System.String)">
+            <summary>
+            指定したリストをアンフォローします。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listName">リスト名。</param>
+            <returns>アンフォローしたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Unsubscribe(System.String,Lunar.ListID)">
+            <summary>
+            指定したリストをアンフォローします。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>アンフォローしたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Unsubscribe(System.String,System.String)">
+            <summary>
+            指定したリストをアンフォローします。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listName">リスト名。</param>
+            <returns>アンフォローしたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Get(Lunar.UserID,Lunar.ListID)">
+            <summary>
+            リスト情報を取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>リスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Get(Lunar.UserID,System.String)">
+            <summary>
+            リスト情報を取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listName">リスト名。</param>
+            <returns>リスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Get(System.String,Lunar.ListID)">
+            <summary>
+            リスト情報を取得します。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>リスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Get(System.String,System.String)">
+            <summary>
+            リスト情報を取得します。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listName">リスト名。</param>
+            <returns>リスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Destroy(Lunar.ListID)">
+            <summary>
+            指定したリストを削除します。
+            </summary>
+            <param name="listID">リスト ID。</param>
+            <returns>削除されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Destroy(System.String)">
+            <summary>
+            指定したリストを削除します。
+            </summary>
+            <param name="listName">リスト名。</param>
+            <returns>削除されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Memberships">
+            <summary>
+            現在のアカウントのユーザがフォローされているリストの一覧を取得します。
+            </summary>
+            <returns>フォローされているリストの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Memberships(Lunar.UserID)">
+            <summary>
+            指定されたユーザがフォローされているリストの一覧を取得します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <returns>フォローされているリストの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Memberships(System.String)">
+            <summary>
+            指定されたユーザがフォローされているリストの一覧を取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>フォローされているリストの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Members(Lunar.UserID,Lunar.ListID)">
+            <summary>
+            リストがフォローしているユーザを取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>リストがフォローしているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Members(Lunar.UserID,System.String)">
+            <summary>
+            リストがフォローしているユーザを取得します。
+            </summary>
+            <param name="id">リストのユーザ ID。</param>
+            <param name="listName">リスト名。</param>
+            <returns>リストがフォローしているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Members(System.String,Lunar.ListID)">
+            <summary>
+            リストがフォローしているユーザを取得します。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listID">リスト ID。</param>
+            <returns>リストがフォローしているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.Members(System.String,System.String)">
+            <summary>
+            リストがフォローしているユーザを取得します。
+            </summary>
+            <param name="userName">リストのユーザ名。</param>
+            <param name="listName">リスト名。</param>
+            <returns>リストがフォローしているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.AddMember(Lunar.ListID,Lunar.UserID)">
+            <summary>
+            指定したユーザをリストに追加します。
+            </summary>
+            <param name="listID">リスト ID。</param>
+            <param name="add">追加するユーザ ID。</param>
+            <returns>ユーザを追加したリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.AddMember(Lunar.ListID,System.String)">
+            <summary>
+            指定したユーザをリストに追加します。
+            </summary>
+            <param name="listID">リスト ID。</param>
+            <param name="add">追加するユーザ名。</param>
+            <returns>ユーザを追加したリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.AddMember(System.String,Lunar.UserID)">
+            <summary>
+            指定したユーザをリストに追加します。
+            </summary>
+            <param name="listName">リスト名。</param>
+            <param name="add">追加するユーザ ID。</param>
+            <returns>ユーザを追加したリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.AddMember(System.String,System.String)">
+            <summary>
+            指定したユーザをリストに追加します。
+            </summary>
+            <param name="listName">リスト名。</param>
+            <param name="add">追加するユーザ名。</param>
+            <returns>ユーザを追加したリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.RemoveMember(Lunar.ListID,Lunar.UserID)">
+            <summary>
+            指定したユーザをリストから削除します。
+            </summary>
+            <param name="listID">リスト ID。</param>
+            <param name="remove">削除するユーザ ID。</param>
+            <returns>ユーザを削除したリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.RemoveMember(Lunar.ListID,System.String)">
+            <summary>
+            指定したユーザをリストから削除します。
+            </summary>
+            <param name="listID">リスト ID。</param>
+            <param name="remove">削除するユーザ名。</param>
+            <returns>ユーザを削除したリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.RemoveMember(System.String,Lunar.UserID)">
+            <summary>
+            指定したユーザをリストから削除します。
+            </summary>
+            <param name="listName">リスト名。</param>
+            <param name="remove">削除するユーザ ID。</param>
+            <returns>ユーザを削除したリスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterLists.RemoveMember(System.String,System.String)">
+            <summary>
+            指定したユーザをリストから削除します。
+            </summary>
+            <param name="listName">リスト名。</param>
+            <param name="remove">削除するユーザ名。</param>
+            <returns>ユーザを削除したリスト。</returns>
+        </member>
+        <member name="T:Lunar.TwitterClient.TwitterDirectMessages">
+            <summary>
+            ダイレクトメッセージに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterDirectMessages.Received">
+            <summary>
+            受信したダイレクトメッセージを取得します。
+            </summary>
+            <returns>受信したダイレクトメッセージ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterDirectMessages.Received(Lunar.StatusRange)">
+            <summary>
+            受信したダイレクトメッセージを取得します。
+            </summary>
+            <param name="range">取得範囲。</param>
+            <returns>受信したダイレクトメッセージ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterDirectMessages.Sent">
+            <summary>
+            送信したダイレクトメッセージを取得します。
+            </summary>
+            <returns>送信したダイレクトメッセージ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterDirectMessages.Sent(Lunar.StatusRange)">
+            <summary>
+            送信したダイレクトメッセージを取得します。
+            </summary>
+            <param name="range">取得範囲。</param>
+            <returns>送信したダイレクトメッセージ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterDirectMessages.Send(Lunar.UserID,System.String)">
+            <summary>
+            指定したユーザにダイレクトメッセージを送信します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <param name="text">ユーザ名。</param>
+            <returns>送信されたダイレクトメッセージ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterDirectMessages.Send(System.String,System.String)">
+            <summary>
+            指定したユーザにダイレクトメッセージを送信します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <param name="text">ユーザ名。</param>
+            <returns>送信されたダイレクトメッセージ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterDirectMessages.Destroy(Lunar.StatusID)">
+            <summary>
+            指定したダイレクトメッセージを削除します。
+            </summary>
+            <param name="id">ID。</param>
+            <returns>削除されたダイレクトメッセージ。</returns>
+        </member>
+        <member name="T:Lunar.TwitterClient.TwitterFavorites">
+            <summary>
+            お気に入りに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFavorites.Index">
+            <summary>
+            現在のアカウントのお気に入りを取得します。
+            </summary>
+            <returns>お気に入りの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFavorites.Index(System.Int32)">
+            <summary>
+            指定したページの現在のアカウントのお気に入りを取得します。
+            </summary>
+            <param name="page">ページ。</param>
+            <returns>お気に入りの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFavorites.Index(Lunar.UserID)">
+            <summary>
+            指定したユーザのお気に入りを取得します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <returns>お気に入りの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFavorites.Index(Lunar.UserID,System.Int32)">
+            <summary>
+            指定したユーザの指定したページのお気に入りを取得します。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <param name="page">ページ。</param>
+            <returns>お気に入りの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFavorites.Index(System.String)">
+            <summary>
+            指定したユーザのお気に入りを取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>お気に入りの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFavorites.Index(System.String,System.Int32)">
+            <summary>
+            指定したユーザの指定したページのお気に入りを取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <param name="page">ページ。</param>
+            <returns>お気に入りの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFavorites.Create(Lunar.StatusID)">
+            <summary>
+            指定されたつぶやきをお気に入りに追加します。
+            </summary>
+            <param name="id">ID。</param>
+            <returns>お気に入りに追加されたつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFavorites.Destroy(Lunar.StatusID)">
+            <summary>
+            指定されたつぶやきをお気に入りから削除します。
+            </summary>
+            <param name="id">ID。</param>
+            <returns>お気に入りから削除されたつぶやき。</returns>
+        </member>
+        <member name="T:Lunar.TwitterClient.TwitterUsers">
+            <summary>
+            ユーザに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterUsers.Get(Lunar.UserID)">
+            <summary>
+            指定したユーザの情報を取得します。
+            </summary>
+            <param name="id">ID。</param>
+            <returns>ユーザ情報。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterUsers.Get(System.String)">
+            <summary>
+            指定したユーザの情報を取得します。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>ユーザ情報。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterUsers.Search(System.String)">
+            <summary>
+            指定された文字列でユーザを検索します。
+            </summary>
+            <param name="query">検索文字列。</param>
+            <returns>ユーザのつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterUsers.Search(System.String,Lunar.StatusRange)">
+            <summary>
+            指定された文字列でユーザを検索します。
+            </summary>
+            <param name="query">検索文字列。</param>
+            <param name="range">取得範囲。</param>
+            <returns>ユーザのつぶやき。</returns>
+        </member>
+        <member name="T:Lunar.TwitterClient.TwitterFriendships">
+            <summary>
+            関係に関する機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Get(Lunar.UserID)">
+            <summary>
+            現在のアカウントと指定されたユーザの関係を取得します。
+            </summary>
+            <param name="targetID">対象のユーザ ID。</param>
+            <returns>関係。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Get(System.String)">
+            <summary>
+            現在のアカウントと指定されたユーザの関係を取得します。
+            </summary>
+            <param name="targetName">対象のユーザ名。</param>
+            <returns>関係。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Get(Lunar.UserID,Lunar.UserID)">
+            <summary>
+            指定されたユーザの間の関係を取得します。
+            </summary>
+            <param name="sourceID">元のユーザ ID。</param>
+            <param name="targetID">対象のユーザ ID。</param>
+            <returns>関係。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Get(Lunar.UserID,System.String)">
+            <summary>
+            指定されたユーザの間の関係を取得します。
+            </summary>
+            <param name="sourceID">元のユーザ ID。</param>
+            <param name="targetName">対象のユーザ名。</param>
+            <returns>関係。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Get(System.String,Lunar.UserID)">
+            <summary>
+            指定されたユーザの間の関係を取得します。
+            </summary>
+            <param name="sourceName">元のユーザ名。</param>
+            <param name="targetID">対象のユーザ ID。</param>
+            <returns>関係。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Get(System.String,System.String)">
+            <summary>
+            指定されたユーザの間の関係を取得します。
+            </summary>
+            <param name="sourceName">元のユーザ名。</param>
+            <param name="targetName">対象のユーザ名。</param>
+            <returns>関係。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Create(Lunar.UserID)">
+            <summary>
+            指定したユーザをフォローします。
+            </summary>
+            <param name="id">ID。</param>
+            <returns>フォローしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Create(System.String)">
+            <summary>
+            指定したユーザをフォローします。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>フォローしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Destroy(Lunar.UserID)">
+            <summary>
+            指定したユーザをアンフォローします。
+            </summary>
+            <param name="id">ID。</param>
+            <returns>アンフォローしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Destroy(System.String)">
+            <summary>
+            指定したユーザをアンフォローします。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>アンフォローしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Incoming">
+            <summary>
+            自分へのフォローリクエストを取得します。
+            </summary>
+            <returns>自分へのフォローリクエスト。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterFriendships.Outgoing">
+            <summary>
+            自分のフォローリクエストを取得します。
+            </summary>
+            <returns>自分のフォローリクエスト。</returns>
+        </member>
+        <member name="T:Lunar.TwitterClient.TwitterBlocks">
+            <summary>
+            ブロックに関する機能を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterBlocks.Blocking">
+            <summary>
+            ブロックしているユーザの一覧を取得します。
+            </summary>
+            <returns>ブロックしているユーザの一覧。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterBlocks.Create(Lunar.UserID)">
+            <summary>
+            指定したユーザをブロックします。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <returns>ブロックしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterBlocks.Create(System.String)">
+            <summary>
+            指定したユーザをブロックします。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>ブロックしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterBlocks.Destroy(Lunar.UserID)">
+            <summary>
+            指定したユーザをアンブロックします。
+            </summary>
+            <param name="id">ユーザ ID。</param>
+            <returns>アンブロックしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.TwitterClient.TwitterBlocks.Destroy(System.String)">
+            <summary>
+            指定したユーザをアンブロックします。
+            </summary>
+            <param name="userName">ユーザ名。</param>
+            <returns>アンブロックしたユーザ。</returns>
+        </member>
+        <member name="T:Lunar.ListID">
+            <summary>
+            リスト ID を表します。
+            </summary>
+        </member>
+        <member name="T:Lunar.IID">
+            <summary>
+            ID の実値を提供します。
+            </summary>
+        </member>
+        <member name="P:Lunar.IID.Value">
+            <summary>
+            ID。
+            </summary>
+        </member>
+        <member name="M:Lunar.ListID.op_Implicit(Lunar.ListID)~System.Int64">
+            <summary>
+            指定された ListID を long に変換します。
+            </summary>
+            <param name="self">ListID。</param>
+            <returns>long。</returns>
+        </member>
+        <member name="M:Lunar.ListID.op_Implicit(System.Int64)~Lunar.ListID">
+            <summary>
+            指定された long を ListID に変換します。
+            </summary>
+            <param name="self">long。</param>
+            <returns>ListID。</returns>
+        </member>
+        <member name="M:Lunar.ListID.op_Implicit(System.Double)~Lunar.ListID">
+            <summary>
+            指定された double を ListID に変換します。
+            </summary>
+            <param name="self">double。</param>
+            <returns>ListID。</returns>
+        </member>
+        <member name="M:Lunar.ListID.ToString">
+            <summary>
+            このインスタンスの数値を、それと等価な文字列形式に変換します。
+            </summary>
+            <returns>文字列形式。</returns>
+        </member>
+        <member name="M:Lunar.ListID.GetHashCode">
+            <summary>
+            このインスタンスのハッシュ コードを返します。
+            </summary>
+            <returns>このインスタンスのハッシュ コード。</returns>
+        </member>
+        <member name="M:Lunar.ListID.Equals(System.Object)">
+            <summary>
+            対象のインスタンスが、指定したオブジェクトに等しいかどうかを示す値を返します。
+            </summary>
+            <param name="obj">このインスタンスと比較するオブジェクト。</param>
+            <returns>obj が ListID のインスタンスで、このインスタンスの値に等しい場合は true。それ以外の場合は false。</returns>
+        </member>
+        <member name="M:Lunar.ListID.CompareTo(Lunar.ListID)">
+            <summary>
+            指定した ListID とこのインスタンスを比較し、これらの相対値を示す値を返します。
+            </summary>
+            <param name="other">比較対象の ListID。</param>
+            <returns>このインスタンスと value の相対値を示す符号付き数値。</returns>
+        </member>
+        <member name="T:Lunar.RateLimitExceededException">
+            <summary>
+            API 実行制限に達したときにスローされる例外。
+            </summary>
+        </member>
+        <member name="M:Lunar.RateLimitExceededException.#ctor(Lunar.RateLimit)">
+            <summary>
+            API 制限情報を指定し RateLimitExceededException の新しいインスタンスを初期化します。
+            </summary>
+            <param name="rateLimit">基になる API 制限情報。</param>
+        </member>
+        <member name="P:Lunar.RateLimitExceededException.RateLimit">
+            <summary>
+            API 制限情報を取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.StatusRange">
+            <summary>
+            取得範囲を表します。
+            </summary>
+        </member>
+        <member name="M:Lunar.StatusRange.#ctor">
+            <summary>
+            StatusRange の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Lunar.StatusRange.#ctor(Lunar.StatusID,Lunar.StatusID,System.Int32,System.Int32)">
+            <summary>
+            各種パラメータを指定し StatusRange の新しいインスタンスを初期化します。
+            </summary>
+            <param name="sinceID">since_id 指定子。</param>
+            <param name="maxID">max_id 指定子。</param>
+            <param name="count">count 指定子。</param>
+            <param name="page">page 指定子。</param>
+        </member>
+        <member name="P:Lunar.StatusRange.SinceID">
+            <summary>
+            since_id 指定子を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Lunar.StatusRange.MaxID">
+            <summary>
+            max_id 指定子を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Lunar.StatusRange.Count">
+            <summary>
+            count 指定子を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Lunar.StatusRange.Page">
+            <summary>
+            page 指定子を取得または設定します。
+            </summary>
+        </member>
+        <member name="T:Lunar.SearchResult">
+            <summary>
+            検索結果を表します。
+            </summary>
+        </member>
+        <member name="T:Lunar.Status">
+            <summary>
+            つぶやきを表します。
+            </summary>
+        </member>
+        <member name="T:Lunar.IEntry">
+            <summary>
+            各種エントリで実装する、エントリの基本情報を定義します。
+            </summary>
+        </member>
+        <member name="P:Lunar.IEntry.UserName">
+            <summary>
+            ユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.IEntry.Text">
+            <summary>
+            本文を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.IEntry.CreatedAt">
+            <summary>
+            生成日時を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.IEntry.Account">
+            <summary>
+            取得したアカウントを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.IEntry.ID">
+            <summary>
+            ID を取得します。
+            </summary>
+        </member>
+        <member name="M:Lunar.Status.#ctor(Lunar.TwitterClient,Codeplex.Data.DynamicJson)">
+            <summary>
+            Twitter クライアントと基になる JSON オブジェクトを指定し Status の新しいインスタンスを初期化します。
+            </summary>
+            <param name="client">Twitter クライアント。</param>
+            <param name="json">基になる JSON オブジェクト。</param>
+        </member>
+        <member name="M:Lunar.Status.#ctor(Lunar.TwitterClient,Codeplex.Data.DynamicJson,Lunar.User)">
+            <summary>
+            Twitter クライアント、基になる JSON オブジェクトおよび関連するユーザを指定し Status の新しいインスタンスを初期化します。
+            </summary>
+            <param name="client">Twitter クライアント。</param>
+            <param name="json">基になる JSON オブジェクト。</param>
+            <param name="user">関連するユーザ。</param>
+        </member>
+        <member name="M:Lunar.Status.#ctor(Lunar.TwitterClient,Lunar.User)">
+            <summary>
+            Twitter クライアントおよび関連するユーザを指定し Status の新しいインスタンスを初期化します。
+            </summary>
+            <param name="client">Twitter クライアント。</param>
+            <param name="user">関連するユーザ。</param>
+        </member>
+        <member name="M:Lunar.Status.Retweet">
+            <summary>
+            このつぶやきを Retweet します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>Retweet した結果のつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.Status.Destroy">
+            <summary>
+            このつぶやきを削除します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>削除したつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.Status.Favorite">
+            <summary>
+            このつぶやきをお気に入りします。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>お気に入りしたつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.Status.Unfavorite">
+            <summary>
+            このつぶやきをお気に入りから外します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>お気に入りから外したつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.Status.Equals(Lunar.Status)">
+            <summary>
+            指定した Status が現在のインスタンスと等しいかどうか判断します。
+            </summary>
+            <param name="other">現在の Status と比較する Status。</param>
+            <returns>等しいかどうか。</returns>
+        </member>
+        <member name="M:Lunar.Status.Equals(System.Object)">
+            <summary>
+            指定したオブジェクトが現在のインスタンスと等しいかどうか判断します。
+            </summary>
+            <param name="obj">現在の Status と比較するオブジェクト。</param>
+            <returns>等しいかどうか。</returns>
+        </member>
+        <member name="M:Lunar.Status.GetHashCode">
+            <summary>
+            現在の Status のハッシュコードを取得します。
+            </summary>
+            <returns>現在の Status のハッシュコード。</returns>
+        </member>
+        <member name="M:Lunar.Status.Equals(Lunar.IEntry)">
+            <summary>
+            指定した IEntry が現在のインスタンスと等しいかどうか判断します。
+            </summary>
+            <param name="other">現在の Status と比較する IEntry。</param>
+            <returns>等しいかどうか。</returns>
+        </member>
+        <member name="P:Lunar.Status.Account">
+            <summary>
+            取得したアカウントを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.IsDirectMessage">
+            <summary>
+            ダイレクトメッセージであるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.IsSearchResult">
+            <summary>
+            検索結果であるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.IsRetweet">
+            <summary>
+            Retweet であるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.IsNotRetweet">
+            <summary>
+            Retweet でないかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.IsNotRetweetAndDirectMessage">
+            <summary>
+            Retweet でなくて、かつダイレクトメッセージでもないかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.IsOwned">
+            <summary>
+            このつぶやきが取得したアカウントからのつぶやきであるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.IsNotOwned">
+            <summary>
+            このつぶやきが取得したアカウントからのつぶやきでないかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.Text">
+            <summary>
+            本文を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.StatusID">
+            <summary>
+            ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.Truncated">
+            <summary>
+            truncated
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.InReplyToStatusID">
+            <summary>
+            返信先の ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.InReplyToUserID">
+            <summary>
+            返信先のユーザ ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.IsReply">
+            <summary>
+            返信であるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.InReplyToUserName">
+            <summary>
+            返信先のユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.Mentions">
+            <summary>
+            言及しているユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.User">
+            <summary>
+            このつぶやきのユーザを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.Uri">
+            <summary>
+            アドレスを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.Protected">
+            <summary>
+            protected であるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.UserName">
+            <summary>
+            ユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.FullUserName">
+            <summary>
+            ユーザの名前を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.UserID">
+            <summary>
+            ユーザ ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.ProfileImage">
+            <summary>
+            ユーザアイコンを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.Source">
+            <summary>
+            投稿ソースを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.SourceName">
+            <summary>
+            投稿ソース名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.SourceUri">
+            <summary>
+            投稿ソースのアドレスを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.Favorited">
+            <summary>
+            お気に入りしているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.CreatedAt">
+            <summary>
+            投稿日時を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.Contributors">
+            <summary>
+            contributors
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.RetweetedStatus">
+            <summary>
+            このつぶやきが Retweet の場合、Retweet 先を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.RetweetedStatusOrSelf">
+            <summary>
+            このつぶやきが Retweet の場合、Retweet 先を取得します。
+            そうでなければ、このつぶやきを返します。
+            </summary>
+        </member>
+        <member name="P:Lunar.Status.RecipientName">
+            <summary>
+            受取人の名前を取得します。
+            </summary>
+        </member>
+        <member name="M:Lunar.SearchResult.#ctor(Lunar.TwitterClient,Codeplex.Data.DynamicJson)">
+            <summary>
+            Twitter クライアントと基になる JSON オブジェクトを指定し DirectMessage の新しいインスタンスを初期化します。
+            </summary>
+            <param name="client">Twitter クライアント。</param>
+            <param name="json">基になる JSON オブジェクト。</param>
+        </member>
+        <member name="P:Lunar.SearchResult.IsSearchResult">
+            <summary>
+            検索結果であるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.SearchResult.UserName">
+            <summary>
+            ユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.SearchResult.Protected">
+            <summary>
+            protected であるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.SearchResult.FullUserName">
+            <summary>
+            ユーザの名前を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.SearchResult.UserID">
+            <summary>
+            ユーザ ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.SearchResult.ProfileImage">
+            <summary>
+            ユーザ画像を取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.TwitterStreamEventArgs">
+            <summary>
+            User Streams イベント データを提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterStreamEventArgs.#ctor(Lunar.TwitterClient,Codeplex.Data.DynamicJson)">
+            <summary>
+            Twitter クライアントと基になる JSON オブジェクトを指定し TwitterStreamEventArgs の新しいインスタンスを初期化します。
+            </summary>
+            <param name="client">Twitter クライアント。</param>
+            <param name="json">基になる JSON オブジェクト。</param>
+        </member>
+        <member name="P:Lunar.TwitterStreamEventArgs.Source">
+            <summary>
+            ソースを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStreamEventArgs.Target">
+            <summary>
+            対象を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStreamEventArgs.TargetStatus">
+            <summary>
+            対象のつぶやきが存在する場合、対象のつぶやきを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStreamEventArgs.CreatedAt">
+            <summary>
+            発生日時を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStreamEventArgs.Type">
+            <summary>
+            イベントの種類を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStreamEventArgs.Account">
+            <summary>
+            取得したアカウントを取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.UserID">
+            <summary>
+            ユーザ ID を表します。
+            </summary>
+        </member>
+        <member name="M:Lunar.UserID.op_Implicit(Lunar.UserID)~System.Int64">
+            <summary>
+            指定された UserID を long に変換します。
+            </summary>
+            <param name="self">UserID。</param>
+            <returns>long。</returns>
+        </member>
+        <member name="M:Lunar.UserID.op_Implicit(System.Int64)~Lunar.UserID">
+            <summary>
+            指定された long を UserID に変換します。
+            </summary>
+            <param name="self">long。</param>
+            <returns>UserID。</returns>
+        </member>
+        <member name="M:Lunar.UserID.op_Implicit(System.Double)~Lunar.UserID">
+            <summary>
+            指定された double を UserID に変換します。
+            </summary>
+            <param name="self">double。</param>
+            <returns>UserID。</returns>
+        </member>
+        <member name="M:Lunar.UserID.ToString">
+            <summary>
+            このインスタンスの数値を、それと等価な文字列形式に変換します。
+            </summary>
+            <returns>文字列形式。</returns>
+        </member>
+        <member name="M:Lunar.UserID.GetHashCode">
+            <summary>
+            このインスタンスのハッシュ コードを返します。
+            </summary>
+            <returns>このインスタンスのハッシュ コード。</returns>
+        </member>
+        <member name="M:Lunar.UserID.Equals(System.Object)">
+            <summary>
+            対象のインスタンスが、指定したオブジェクトに等しいかどうかを示す値を返します。
+            </summary>
+            <param name="obj">このインスタンスと比較するオブジェクト。</param>
+            <returns>obj が UserID のインスタンスで、このインスタンスの値に等しい場合は true。それ以外の場合は false。</returns>
+        </member>
+        <member name="M:Lunar.UserID.CompareTo(Lunar.UserID)">
+            <summary>
+            指定した UserID とこのインスタンスを比較し、これらの相対値を示す値を返します。
+            </summary>
+            <param name="other">比較対象の UserID。</param>
+            <returns>このインスタンスと value の相対値を示す符号付き数値。</returns>
+        </member>
+        <member name="T:Lunar.CacheScope">
+            <summary>
+            同一要素へのリクエストのキャッシングを指示します。
+            </summary>
+        </member>
+        <member name="M:Lunar.CacheScope.#ctor">
+            <summary>
+            CacheScope の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Lunar.CacheScope.ReadWithCaching``1(``0,System.Func{``0,System.String})">
+            <summary>
+            この CacheScope を使用し指定したキー要素に割り当てられたキャッシュを取得するか、指定された外部取得処理を実行しキャッシュします。
+            </summary>
+            <typeparam name="T">キー要素の型。</typeparam>
+            <param name="key">探索または割り当てるキャッシュのキー要素。</param>
+            <param name="body">指定したキー要素がキャッシュされていなかった場合実行される取得処理。</param>
+            <returns>指定したキー要素に割り当てられたキャッシュが存在する場合はそのキャッシュ。無い場合は指定された外部取得処理の取得結果。</returns>
+        </member>
+        <member name="M:Lunar.CacheScope.Dispose">
+            <summary>
+            同一要素へのリクエストのキャッシングを終了します。
+            </summary>
+        </member>
+        <member name="M:Lunar.CacheScope.Finalize">
+            <summary>
+            dtor
+            </summary>
+        </member>
+        <member name="P:Lunar.CacheScope.Current">
+            <summary>
+            現在の CacheScope のコンテキストを取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.AccountToken">
+            <summary>
+            アカウント情報を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.AccountToken.ClearToken">
+            <summary>
+            保持されている OAuth 認証情報をクリアします。
+            </summary>
+        </member>
+        <member name="M:Lunar.AccountToken.#ctor">
+            <summary>
+            AccountToken の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Lunar.AccountToken.#ctor(System.String)">
+            <summary>
+            ユーザ名を指定し AccountToken の新しいインスタンスを初期化します。
+            </summary>
+            <param name="name"></param>
+        </member>
+        <member name="M:Lunar.AccountToken.#ctor(System.String,Lunar.UserID,System.String,System.String)">
+            <summary>
+            ユーザ名、ユーザ ID、OAuth 認証トークンおよび OAuth 秘密認証トークンを指定し AccountToken の新しいインスタンスを初期化します。
+            </summary>
+            <param name="name">ユーザ名。</param>
+            <param name="userID">ユーザ ID。</param>
+            <param name="token">OAuth 認証トークン。</param>
+            <param name="tokenSecret">OAuth 秘密認証トークン。</param>
+        </member>
+        <member name="M:Lunar.AccountToken.Equals(Lunar.AccountToken)">
+            <summary>
+            指定した AccountToken が現在のインスタンスと等しいかどうか判断します。
+            </summary>
+            <param name="other">現在の AccountToken と比較する AccountToken。</param>
+            <returns>等しいかどうか。</returns>
+        </member>
+        <member name="M:Lunar.AccountToken.ToString">
+            <summary>
+            現在の AccountToken の文字列表現を取得します。
+            </summary>
+            <returns>現在の AccountToken の文字列表現。</returns>
+        </member>
+        <member name="M:Lunar.AccountToken.Equals(System.Object)">
+            <summary>
+            指定したオブジェクトが現在のインスタンスと等しいかどうか判断します。
+            </summary>
+            <param name="obj">現在の AccountToken と比較するオブジェクト。</param>
+            <returns>等しいかどうか。</returns>
+        </member>
+        <member name="M:Lunar.AccountToken.GetHashCode">
+            <summary>
+            現在の AccountToken のハッシュコードを取得します。
+            </summary>
+            <returns>現在の AccountToken のハッシュコード。</returns>
+        </member>
+        <member name="P:Lunar.AccountToken.Name">
+            <summary>
+            ユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.AccountToken.UserID">
+            <summary>
+            ユーザ ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.AccountToken.OAuthToken">
+            <summary>
+            OAuth 認証トークンを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.AccountToken.OAuthTokenSecret">
+            <summary>
+            OAuth 秘密認証トークンを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.AccountToken.IsAuthorized">
+            <summary>
+            OAuth 認証されているかどうかを取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.TwitterUriBuilder">
+            <summary>
+            Twitter URI 構築を提供します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterUriBuilder.UseHttps">
+            <summary>
+            HTTPS を使用するかどうかを取得または設定します。
+            </summary>
+        </member>
+        <member name="T:Lunar.OAuthAuthorization">
+            <summary>
+            OAuth 認証を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.#ctor(Lunar.AccountToken)">
+            <summary>
+            アカウントを指定し OAuthAuthorization の新しいインスタンスを初期化します。
+            </summary>
+            <param name="token">アカウント。</param>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.#ctor">
+            <summary>
+            OAuthAuthorization の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.#ctor(System.String,System.String)">
+            <summary>
+            Consumer key と Consumer secret を指定し OAuthAuthorization の新しいインスタンスを初期化します。
+            </summary>
+            <param name="consumerKey">Consumer key。</param>
+            <param name="consumerSecret">Consumer secret。</param>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.#ctor(System.String,System.String,Lunar.AccountToken)">
+            <summary>
+            Consumer key、 Consumer secret およびアカウントを指定し OAuthAuthorization の新しいインスタンスを初期化します。
+            </summary>
+            <param name="consumerKey">Consumer key。</param>
+            <param name="consumerSecret">Consumer secret。</param>
+            <param name="token">アカウント。</param>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.GetAuthorizationUri">
+            <summary>
+            認証のためのアドレスを取得します。
+            </summary>
+            <returns>認証のためのアドレス。</returns>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.Authenticate(System.String)">
+            <summary>
+            指定した PIN で認証します。
+            </summary>
+            <param name="pin">PIN。</param>
+            <returns>認証されたアカウント。</returns>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.EscapeDataString(System.String)">
+            <summary>
+            文字列をエスケープ表現に変換します。( ) * ' ! もエスケープします。
+            </summary>
+            <param name="s">文字列。</param>
+            <returns>エスケープされた文字列。</returns>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.CreateParameters(System.String,System.Uri,System.String)">
+            <summary>
+            指定したメソッド、アドレスおよびクエリの OAuth シグネチャおよびパラメータを取得します。
+            </summary>
+            <param name="httpMethod">メソッド。</param>
+            <param name="uri">アドレス。</param>
+            <param name="query">クエリ。</param>
+            <returns>OAuth シグネチャおよびパラメータ。</returns>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.Dispose">
+            <summary>
+            OAuthAuthorization によって使用されているすべてのリソースを開放します。
+            </summary>
+        </member>
+        <member name="M:Lunar.OAuthAuthorization.Finalize">
+            <summary>
+            dtor
+            </summary>
+        </member>
+        <member name="P:Lunar.OAuthAuthorization.Token">
+            <summary>
+            アカウント情報を取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Lunar.OAuthAuthorization.ConsumerKey">
+            <summary>
+            Consumer key を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.OAuthAuthorization.ConsumerSecret">
+            <summary>
+            Consumer secret を取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.ReduceAuthenticatedQueryScope">
+            <summary>
+            非認証状態での取得の活用を指示します。
+            </summary>
+        </member>
+        <member name="M:Lunar.ReduceAuthenticatedQueryScope.#ctor">
+            <summary>
+            ReduceAuthenticatedQueryScope の新しいインスタンスを初期化します。
+            </summary>
+        </member>
+        <member name="M:Lunar.ReduceAuthenticatedQueryScope.Dispose">
+            <summary>
+            非認証状態での取得の活用を終了します。
+            </summary>
+        </member>
+        <member name="M:Lunar.ReduceAuthenticatedQueryScope.Finalize">
+            <summary>
+            dtor
+            </summary>
+        </member>
+        <member name="P:Lunar.ReduceAuthenticatedQueryScope.Current">
+            <summary>
+            現在の ReduceAuthenticatedQueryScope コンテキストを取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.OAuthUnauthorizedException">
+            <summary>
+            OAuth の認証に失敗したときにスローされる例外。
+            </summary>
+        </member>
+        <member name="T:Lunar.ContentedWebException">
+            <summary>
+            WebException に受信内容を追加したものです。
+            </summary>
+        </member>
+        <member name="M:Lunar.ContentedWebException.#ctor(System.String,System.Exception,System.Net.WebExceptionStatus,System.Net.WebResponse)">
+            <summary>
+            ContentedWebException クラスの新しいインスタンスを、指定したエラー メッセージ、入れ子になった例外、ステータス、および応答を使用して初期化します。
+            </summary>
+            <param name="message">エラー メッセージのテキスト。</param>
+            <param name="innerException">入れ子になった例外。</param>
+            <param name="status">System.Net.WebExceptionStatus 値の 1 つ。</param>
+            <param name="response">リモート ホストからの応答を格納する System.Net.WebResponse インスタンス。</param>
+        </member>
+        <member name="M:Lunar.ContentedWebException.Create(System.Net.WebException)">
+            <summary>
+            指定された WebException を基に ContentedWebException の新しいインスタンスを初期化します。
+            </summary>
+            <param name="ex">基になる WebException。</param>
+            <returns>新しい ContentedWebException。</returns>
+        </member>
+        <member name="P:Lunar.ContentedWebException.ContentText">
+            <summary>
+            受信内容を取得します。
+            </summary>
+        </member>
+        <member name="M:Lunar.OAuthUnauthorizedException.#ctor(System.Net.WebException)">
+            <summary>
+            基になる WebException を指定し OAuthUnauthorizedException の新しいインスタンスを初期化します。
+            </summary>
+            <param name="ex">基になる WebException。</param>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Parse(System.String)">
+            <summary>from JsonSring to DynamicJson</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Parse(System.String,System.Text.Encoding)">
+            <summary>from JsonSring to DynamicJson</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Parse(System.IO.Stream)">
+            <summary>from JsonSringStream to DynamicJson</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Parse(System.IO.Stream,System.Text.Encoding)">
+            <summary>from JsonSringStream to DynamicJson</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Serialize(System.Object)">
+            <summary>create JsonSring from primitive or IEnumerable or Object({public property name:property value})</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.#ctor">
+            <summary>create blank JSObject</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.IsDefined(System.String)">
+            <summary>has property or not</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.IsDefined(System.Int32)">
+            <summary>has property or not</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Delete(System.String)">
+            <summary>delete property</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Delete(System.Int32)">
+            <summary>delete property</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.Deserialize``1">
+            <summary>mapping to Array or Class by Public PropertyName</summary>
+        </member>
+        <member name="M:Codeplex.Data.DynamicJson.ToString">
+            <summary>Serialize to JsonString</summary>
+        </member>
+        <member name="T:Lunar.RateLimit">
+            <summary>
+            API 制限情報を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.RateLimit.#ctor(Lunar.AccountToken,System.Int32,System.Int32,System.DateTime)">
+            <summary>
+            アカウント、残実行数、最大実行数およびリセット時刻を指定し、RateLimit の新しいインスタンスを初期化します。
+            </summary>
+            <param name="account">アカウント。</param>
+            <param name="remaining">残実行数。</param>
+            <param name="limit">最大実行数。</param>
+            <param name="reset">リセット時刻。</param>
+        </member>
+        <member name="M:Lunar.RateLimit.Equals(Lunar.RateLimit)">
+            <summary>
+            指定した RateLimit が現在のインスタンスと等しいかどうか判断します。
+            </summary>
+            <param name="other">現在の RateLimit と比較する RateLimit。</param>
+            <returns>等しいかどうか。</returns>
+        </member>
+        <member name="M:Lunar.RateLimit.GetHashCode">
+            <summary>
+            現在の RateLimit のハッシュコードを取得します。
+            </summary>
+            <returns>現在の RateLimit のハッシュコード。</returns>
+        </member>
+        <member name="P:Lunar.RateLimit.Limit">
+            <summary>
+            最大実行数を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.RateLimit.Remaining">
+            <summary>
+            現在の残実行数を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.RateLimit.Reset">
+            <summary>
+            実行制限のリセット時刻を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.RateLimit.Account">
+            <summary>
+            この実行制限が適用されるアカウントを取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.StreamEvent">
+            <summary>
+            User Streams イベントを表します。
+            </summary>
+        </member>
+        <member name="M:Lunar.StreamEvent.#ctor(Lunar.TwitterStreamEventArgs)">
+            <summary>
+            イベント データを指定し StreamEvent の新しいインスタンスを初期化します。
+            </summary>
+            <param name="e">イベント データ。</param>
+        </member>
+        <member name="M:Lunar.StreamEvent.Equals(Lunar.IEntry)">
+            <summary>
+            指定した IEntry が現在のインスタンスと等しいかどうか判断します。
+            </summary>
+            <param name="other">現在の StreamEvent と比較する IEntry。</param>
+            <returns>等しいかどうか。</returns>
+        </member>
+        <member name="P:Lunar.StreamEvent.UserName">
+            <summary>
+            ユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.StreamEvent.Text">
+            <summary>
+            本文を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.StreamEvent.CreatedAt">
+            <summary>
+            発生日時を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.StreamEvent.Account">
+            <summary>
+            取得したアカウントを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.StreamEvent.ID">
+            <summary>
+            ID を取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.StatusCache">
+            <summary>
+            キャッシュストレージを表します。
+            </summary>
+        </member>
+        <member name="M:Lunar.StatusCache.GetStatuses">
+            <summary>
+            キャッシュされているつぶやきを取得します。
+            </summary>
+            <returns>キャッシュされているつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.StatusCache.GetUsers">
+            <summary>
+            キャッシュされているユーザを取得します。
+            </summary>
+            <returns>キャッシュされているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.StatusCache.RetrieveStatus(Lunar.StatusID,System.Func{Lunar.StatusID,Lunar.Status})">
+            <summary>
+            指定した ID に割り当てられたキャッシュを取得するか、指定された外部取得処理を実行しキャッシュします。
+            </summary>
+            <param name="id">探索または割り当てるキャッシュの ID。</param>
+            <param name="body">指定した ID がキャッシュされていなかった場合実行される取得処理。</param>
+            <returns>指定した ID に割り当てられたキャッシュが存在する場合はそのキャッシュ。無い場合は指定された外部取得処理の取得結果。</returns>
+        </member>
+        <member name="M:Lunar.StatusCache.SetStatus(Lunar.Status)">
+            <summary>
+            指定したつぶやきをキャッシュします。
+            すでに同じ ID のものが存在する場合、上書きされます。
+            </summary>
+            <param name="status">キャッシュするつぶやき。</param>
+            <returns>キャッシュされたつぶやき。</returns>
+        </member>
+        <member name="M:Lunar.StatusCache.RetrieveUser(System.String,System.Func{System.String,Lunar.User})">
+            <summary>
+            指定したユーザ名に割り当てられたキャッシュを取得するか、指定された外部取得処理を実行しキャッシュします。
+            </summary>
+            <param name="id">探索または割り当てるキャッシュのユーザ名。</param>
+            <param name="body">指定したユーザ名がキャッシュされていなかった場合実行される取得処理。</param>
+            <returns>指定したユーザ名に割り当てられたキャッシュが存在する場合はそのキャッシュ。無い場合は指定された外部取得処理の取得結果。</returns>
+        </member>
+        <member name="M:Lunar.StatusCache.RetrieveUser(Lunar.UserID,System.Func{Lunar.UserID,Lunar.User})">
+            <summary>
+            指定したユーザ ID に割り当てられたキャッシュを取得するか、指定された外部取得処理を実行しキャッシュします。
+            </summary>
+            <param name="id">探索または割り当てるキャッシュのユーザ ID。</param>
+            <param name="body">指定したユーザ ID がキャッシュされていなかった場合実行される取得処理。</param>
+            <returns>指定したユーザ ID に割り当てられたキャッシュが存在する場合はそのキャッシュ。無い場合は指定された外部取得処理の取得結果。</returns>
+        </member>
+        <member name="M:Lunar.StatusCache.SetUser(Lunar.User)">
+            <summary>
+            指定したユーザをキャッシュします。
+            すでに同じ ID のものが存在する場合、上書きされます。
+            </summary>
+            <param name="user">キャッシュするユーザ。</param>
+            <returns>キャッシュされたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.StatusCache.Clean">
+            <summary>
+            すでに存在しないキャッシュ要素へのリンクを削除します。
+            </summary>
+        </member>
+        <member name="M:Lunar.StatusCache.Clear">
+            <summary>
+            キャッシュを空にします。
+            </summary>
+        </member>
+        <member name="M:Lunar.StatusCache.RemoveStatus(Lunar.StatusID)">
+            <summary>
+            指定した ID のつぶやきをキャッシュから削除します。
+            </summary>
+            <param name="id">つぶやき ID。</param>
+        </member>
+        <member name="E:Lunar.StatusCache.ResolveStatuses">
+            <summary>
+            つぶやきの一覧を取得するときに発生します。(返却するつぶやきの一覧を設定)
+            </summary>
+        </member>
+        <member name="E:Lunar.StatusCache.ResolveUsers">
+            <summary>
+            ユーザの一覧を取得するときに発生します。(返却するユーザの一覧を設定)
+            </summary>
+        </member>
+        <member name="E:Lunar.StatusCache.ResolveStatus">
+            <summary>
+            つぶやきを取得するときに発生します。(取得する ID, 返却するつぶやきを設定)
+            </summary>
+        </member>
+        <member name="E:Lunar.StatusCache.ResolveUserByName">
+            <summary>
+            ユーザ名からユーザを取得するときに発生します。(取得するユーザ名, 返却するユーザを設定)
+            </summary>
+        </member>
+        <member name="E:Lunar.StatusCache.ResolveUserByID">
+            <summary>
+            ID からユーザを取得するときに発生します。(取得する ID, 返却するユーザを設定)
+            </summary>
+        </member>
+        <member name="E:Lunar.StatusCache.StoreStatus">
+            <summary>
+            つぶやきをキャッシュするときに発生します。(キャッシュするつぶやき)
+            </summary>
+        </member>
+        <member name="E:Lunar.StatusCache.StoreUser">
+            <summary>
+            ユーザをキャッシュするときに発生します。(キャッシュするユーザ)
+            </summary>
+        </member>
+        <member name="E:Lunar.StatusCache.CleanStorage">
+            <summary>
+            キャッシュをクリーンするときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.StatusCache.ClearStorage">
+            <summary>
+            キャッシュをクリアするときに発生します。
+            </summary>
+        </member>
+        <member name="P:Lunar.StatusCache.StatusCount">
+            <summary>
+            キャッシュされているつぶやき数を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.StatusCache.UserCount">
+            <summary>
+            キャッシュされているユーザ数を取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.TwitterStream">
+            <summary>
+            User Streams へのアクセスを提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterStream.#ctor(Lunar.StatusCache)">
+            <summary>
+            キャッシュを指定し TwitterStream の新しいインスタンスを初期化します。
+            </summary>
+            <param name="statusCache">キャッシュ。</param>
+        </member>
+        <member name="M:Lunar.TwitterStream.Connect(Lunar.OAuthAuthorization)">
+            <summary>
+            指定された認証を使用して非同期に User Streams に接続を開始します。
+            </summary>
+            <param name="auth">OAuth 認証。</param>
+            <returns>接続が開始されたかどうか。</returns>
+        </member>
+        <member name="M:Lunar.TwitterStream.Dispose">
+            <summary>
+            すでに接続されていた場合、切断を開始します。
+            </summary>
+        </member>
+        <member name="M:Lunar.TwitterStream.Finalize">
+            <summary>
+            dtor
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Connected">
+            <summary>
+            接続されたときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Disconnected">
+            <summary>
+            切断されたときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.WebError">
+            <summary>
+            Web 例外が発生したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.ConnectionError">
+            <summary>
+            接続エラーが発生したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Exception">
+            <summary>
+            その他の例外が発生したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Friends">
+            <summary>
+            フォローリストを受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Status">
+            <summary>
+            つぶやきを受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.DeleteStatus">
+            <summary>
+            削除通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.DirectMessage">
+            <summary>
+            ダイレクトメッセージを受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Follow">
+            <summary>
+            フォローした通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Followed">
+            <summary>
+            フォローされた通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Unfollow">
+            <summary>
+            アンフォローした通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Block">
+            <summary>
+            ブロックした通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Unblock">
+            <summary>
+            アンブロックした通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Favorite">
+            <summary>
+            お気に入りした通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Favorited">
+            <summary>
+            お気に入りされた通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Unfavorite">
+            <summary>
+            お気に入り解除した通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Unfavorited">
+            <summary>
+            お気に入り解除された通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Retweet">
+            <summary>
+            Retweet した通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="E:Lunar.TwitterStream.Retweeted">
+            <summary>
+            Retweet された通知を受信したときに発生します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStream.StatusCache">
+            <summary>
+            キャッシュを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStream.Account">
+            <summary>
+            アカウントを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStream.IsStreamOpen">
+            <summary>
+            すでに接続中であるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStream.Terminated">
+            <summary>
+            切断済みであるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStream.Track">
+            <summary>
+            track パラメータを取得または設定します。
+            </summary>
+        </member>
+        <member name="P:Lunar.TwitterStream.Follows">
+            <summary>
+            follow パラメータを取得または設定します。
+            </summary>
+        </member>
+        <member name="T:Lunar.ListMode">
+            <summary>
+            リストの公開種別を表します。
+            </summary>
+        </member>
+        <member name="F:Lunar.ListMode.None">
+            <summary>
+            不明。
+            </summary>
+        </member>
+        <member name="F:Lunar.ListMode.Public">
+            <summary>
+            公開リスト。
+            </summary>
+        </member>
+        <member name="F:Lunar.ListMode.Private">
+            <summary>
+            非公開リスト。
+            </summary>
+        </member>
+        <member name="T:Lunar.List">
+            <summary>
+            Twitter リストへのアクセスを提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.List.#ctor(Lunar.TwitterClient,Codeplex.Data.DynamicJson)">
+            <summary>
+            Twitter クライアントと基になる JSON オブジェクトを指定し List の新しいインスタンスを初期化します。
+            </summary>
+            <param name="client">Twitter クライアント。</param>
+            <param name="json">基になる JSON オブジェクト。</param>
+        </member>
+        <member name="M:Lunar.List.Destroy">
+            <summary>
+            このリストを削除します。
+            </summary>
+            <returns>削除されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.List.Subscribe">
+            <summary>
+            このリストをフォローします。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>フォローしたリスト。</returns>
+        </member>
+        <member name="M:Lunar.List.Unsubscribe">
+            <summary>
+            このリストをアンフォローします。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>アンフォローしたリスト。</returns>
+        </member>
+        <member name="M:Lunar.List.Members">
+            <summary>
+            このリストがフォローしているメンバーを取得します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>メンバー一覧。</returns>
+        </member>
+        <member name="M:Lunar.List.AddMember(Lunar.UserID)">
+            <summary>
+            指定したフォローメンバーをこのリストに追加します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <param name="id">メンバーのユーザ ID。</param>
+            <returns>フォローメンバーが追加されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.List.AddMember(System.String)">
+            <summary>
+            指定したフォローメンバーをこのリストに追加します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <param name="userName">メンバーのユーザ名。</param>
+            <returns>フォローメンバーが追加されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.List.RemoveMember(Lunar.UserID)">
+            <summary>
+            指定したフォローメンバーをこのリストから削除します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <param name="id">メンバーのユーザ ID。</param>
+            <returns>フォローメンバーが削除されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.List.RemoveMember(System.String)">
+            <summary>
+            指定したフォローメンバーをこのリストから削除します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <param name="userName">メンバーのユーザ名。</param>
+            <returns>フォローメンバーが削除されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.List.Update(System.String,Lunar.ListMode,System.String)">
+            <summary>
+            このリストの情報を変更します。省略されたパラメータは変更されません。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <param name="newListName">新しいリスト名。</param>
+            <param name="mode">新しい公開種別。</param>
+            <param name="description">新しい解説文。</param>
+            <returns>変更されたリスト。</returns>
+        </member>
+        <member name="M:Lunar.List.Subscribers">
+            <summary>
+            このリストをフォローしているユーザを取得します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>このリストをフォローしているユーザ。</returns>
+        </member>
+        <member name="M:Lunar.List.Equals(Lunar.IEntry)">
+            <summary>
+            指定した IEntry が現在のインスタンスと等しいかどうか判断します。
+            </summary>
+            <param name="other">現在の IEntry と比較する IEntry。</param>
+            <returns>等しいかどうか。</returns>
+        </member>
+        <member name="P:Lunar.List.Account">
+            <summary>
+            取得したアカウントを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.IsOwned">
+            <summary>
+            このリストが取得したアカウントにより作成されたものであるかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.IsNotOwned">
+            <summary>
+            このリストが取得したアカウントにより作成されたものでないかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.User">
+            <summary>
+            ユーザを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.ListID">
+            <summary>
+            リストの ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.Name">
+            <summary>
+            リスト名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.Description">
+            <summary>
+            解説を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.SubscriberCount">
+            <summary>
+            リストのフォロワー数を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.MemberCount">
+            <summary>
+            リストのフォロー数を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.Uri">
+            <summary>
+            URL を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.List.Mode">
+            <summary>
+            リストの公開種別を取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.User">
+            <summary>
+            ユーザ情報を提供します。
+            </summary>
+        </member>
+        <member name="M:Lunar.User.#ctor(Lunar.TwitterClient,Codeplex.Data.DynamicJson)">
+            <summary>
+            Twitter クライアントと基になる JSON オブジェクトを指定し、User の新しいインスタンスを初期化します。
+            </summary>
+            <param name="client">Twitter クライアント。</param>
+            <param name="json">基になる JSON オブジェクト。</param>
+        </member>
+        <member name="M:Lunar.User.#ctor(Lunar.TwitterClient,Codeplex.Data.DynamicJson,Lunar.Status)">
+            <summary>
+            Twitter クライアントと基になる JSON オブジェクトおよび関連したつぶやきを指定し、User の新しいインスタンスを初期化します。
+            </summary>
+            <param name="client">Twitter クライアント。</param>
+            <param name="json">基になる JSON オブジェクト。</param>
+            <param name="status">関連したつぶやき。</param>
+        </member>
+        <member name="M:Lunar.User.Follow">
+            <summary>
+            このユーザをフォローします。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>フォローしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.User.Unfollow">
+            <summary>
+            このユーザをアンフォローします。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>アンフォローしたユーザ。</returns>
+        </member>
+        <member name="M:Lunar.User.Subscriptions">
+            <summary>
+            このユーザがフォローしているリストを取得します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>このユーザがフォローしているリスト。</returns>
+        </member>
+        <member name="M:Lunar.User.Memberships">
+            <summary>
+            このユーザをフォローしているリストを取得します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>このユーザをフォローしているリスト。</returns>
+        </member>
+        <member name="M:Lunar.User.Lists">
+            <summary>
+            このユーザにより作成されたリストを取得します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>このユーザにより作成されたリスト。</returns>
+        </member>
+        <member name="P:Lunar.User.Account">
+            <summary>
+            取得したアカウントを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.Status">
+            <summary>
+            関連付けられたつぶやきを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.UserID">
+            <summary>
+            ユーザ ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.FullName">
+            <summary>
+            名前を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.Name">
+            <summary>
+            ユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.Location">
+            <summary>
+            場所を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.Description">
+            <summary>
+            解説を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.ProfileImage">
+            <summary>
+            画像を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.WebSite">
+            <summary>
+            Web サイトを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.Protected">
+            <summary>
+            protected であるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.IsNotProtected">
+            <summary>
+            protected でないかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.FollowersCount">
+            <summary>
+            フォロワー数を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.FollowingCount">
+            <summary>
+            フォロー数を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.FavouritesCount">
+            <summary>
+            お気に入り数を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.StatusesCount">
+            <summary>
+            つぶやき数を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.CreatedAt">
+            <summary>
+            作成日時を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.User.Verified">
+            <summary>
+            認証済みであるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="T:Lunar.StatusID">
+            <summary>
+            つぶやき ID を表します。
+            </summary>
+        </member>
+        <member name="M:Lunar.StatusID.op_Implicit(Lunar.StatusID)~System.Int64">
+            <summary>
+            指定された StatusID を long に変換します。
+            </summary>
+            <param name="self">StatusID。</param>
+            <returns>long。</returns>
+        </member>
+        <member name="M:Lunar.StatusID.op_Implicit(System.Int64)~Lunar.StatusID">
+            <summary>
+            指定された long を StatusID に変換します。
+            </summary>
+            <param name="self">long。</param>
+            <returns>StatusID。</returns>
+        </member>
+        <member name="M:Lunar.StatusID.op_Implicit(System.Double)~Lunar.StatusID">
+            <summary>
+            指定された double を StatusID に変換します。
+            </summary>
+            <param name="self">double。</param>
+            <returns>StatusID。</returns>
+        </member>
+        <member name="M:Lunar.StatusID.ToString">
+            <summary>
+            このインスタンスの数値を、それと等価な文字列形式に変換します。
+            </summary>
+            <returns>文字列形式。</returns>
+        </member>
+        <member name="M:Lunar.StatusID.GetHashCode">
+            <summary>
+            このインスタンスのハッシュ コードを返します。
+            </summary>
+            <returns>このインスタンスのハッシュ コード。</returns>
+        </member>
+        <member name="M:Lunar.StatusID.Equals(System.Object)">
+            <summary>
+            対象のインスタンスが、指定したオブジェクトに等しいかどうかを示す値を返します。
+            </summary>
+            <param name="obj">このインスタンスと比較するオブジェクト。</param>
+            <returns>obj が StatusID のインスタンスで、このインスタンスの値に等しい場合は true。それ以外の場合は false。</returns>
+        </member>
+        <member name="M:Lunar.StatusID.CompareTo(Lunar.StatusID)">
+            <summary>
+            指定した StatusID とこのインスタンスを比較し、これらの相対値を示す値を返します。
+            </summary>
+            <param name="other">比較対象の StatusID。</param>
+            <returns>このインスタンスと value の相対値を示す符号付き数値。</returns>
+        </member>
+        <member name="T:Lunar.IDConverter`1">
+            <summary>
+            ID 型と string, int, long 型の間の変換を提供します。
+            </summary>
+            <typeparam name="T">ID 型。</typeparam>
+        </member>
+        <member name="M:Lunar.IDConverter`1.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            指定したコンテキストを使用して、コンバーターが特定の型のオブジェクトをコンバーターの型に変換できるかどうかを示す値を返します。
+            </summary>
+            <param name="context">書式指定コンテキストを提供する System.ComponentModel.ITypeDescriptorContext。</param>
+            <param name="sourceType">変換前の型を表す System.Type。</param>
+            <returns>コンバーターが変換を実行できる場合は true。それ以外の場合は false。</returns>
+        </member>
+        <member name="M:Lunar.IDConverter`1.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <summary>
+            コンバーターが、指定したコンテキストを使用して、指定した型にオブジェクトを変換できるかどうかを示す値を返します。
+            </summary>
+            <param name="context">書式指定コンテキストを提供する System.ComponentModel.ITypeDescriptorContext。</param>
+            <param name="destinationType">変換後の型を表す System.Type。</param>
+            <returns>コンバーターが変換を実行できる場合は true。それ以外の場合は false</returns>
+        </member>
+        <member name="M:Lunar.IDConverter`1.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <summary>
+            指定したコンテキストとカルチャ情報を使用して、指定したオブジェクトをコンバーターの型に変換します。
+            </summary>
+            <param name="context">書式指定コンテキストを提供する System.ComponentModel.ITypeDescriptorContext。</param>
+            <param name="culture">現在のカルチャとして使用する System.Globalization.CultureInfo。</param>
+            <param name="value">変換対象の System.Object。</param>
+            <returns>変換後の値を表す System.Object。</returns>
+        </member>
+        <member name="M:Lunar.IDConverter`1.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <summary>
+            指定したコンテキストとカルチャ情報を使用して、指定した値オブジェクトを、指定した型に変換します。
+            </summary>
+            <param name="context">書式指定コンテキストを提供する System.ComponentModel.ITypeDescriptorContext。</param>
+            <param name="culture">System.Globalization.CultureInfo。null が渡された場合は、現在のカルチャが使用されます。</param>
+            <param name="value">変換対象の System.Object。</param>
+            <param name="destinationType">value パラメーターの変換後の System.Type。</param>
+            <returns>変換後の値を表す System.Object。</returns>
+        </member>
+        <member name="T:Lunar.DirectMessage">
+            <summary>
+            ダイレクトメッセージを表します。
+            </summary>
+        </member>
+        <member name="M:Lunar.DirectMessage.#ctor(Lunar.TwitterClient,Codeplex.Data.DynamicJson)">
+            <summary>
+            Twitter クライアントと基になる JSON オブジェクトを指定し DirectMessage の新しいインスタンスを初期化します。
+            </summary>
+            <param name="client">Twitter クライアント。</param>
+            <param name="json">基になる JSON オブジェクト。</param>
+        </member>
+        <member name="M:Lunar.DirectMessage.Destroy">
+            <summary>
+            このダイレクトメッセージを削除します。
+            このメソッドは、TwitterClient インスタンスの存在するコンテキストで実行する必要があります。
+            </summary>
+            <returns>削除されたダイレクトメッセージ。</returns>
+        </member>
+        <member name="P:Lunar.DirectMessage.IsDirectMessage">
+            <summary>
+            ダイレクトメッセージであるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.DirectMessage.Protected">
+            <summary>
+            protected であるかどうかを取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.DirectMessage.UserID">
+            <summary>
+            差出人のユーザ ID を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.DirectMessage.UserName">
+            <summary>
+            差出人のユーザ名を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.DirectMessage.Recipient">
+            <summary>
+            受取人を取得します。
+            </summary>
+        </member>
+        <member name="P:Lunar.DirectMessage.RecipientName">
+            <summary>
+            受取人のユーザ名を取得します。
+            </summary>
+        </member>
+    </members>
+</doc>
