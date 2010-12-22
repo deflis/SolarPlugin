@@ -5,7 +5,7 @@ from Solar import *
 from Solar.Models import *
 from NekoVampire import StreamList
 
-sl = StreamList("ƒ†[ƒU[–¼", "ƒŠƒXƒg–¼")
+sl = StreamList("ãƒ¦ãƒ¼ã‚¶ãƒ¼å", "ãƒªã‚¹ãƒˆå")
 
 def GetStatuses(client, range):
     return sl.GetStatuses(client, range)
