@@ -18,6 +18,7 @@ namespace NekoVampire
         private string userName;
         private string listName;
         private IEnumerable<User> members;
+        private StatusComparer statusComperer = new StatusComparer();
 
         /// <summary>
         /// range で指定された範囲の項目を取得します。
@@ -30,22 +31,45 @@ namespace NekoVampire
             var statuses = client.StatusCache.GetStatuses();
             //var statuses = client.Statuses.HomeTimeline();
 
+            IList<Status> ret;
+
             if (members == null)
                 members = client.Lists.Members(userName, listName).ToList();
 
-            var ret = statuses.AsParallel()
+            ret = statuses
+                .AsParallel()
                 .Where(x => range.SinceID != 0 ? x.StatusID >= range.SinceID : true && range.MaxID != 0 ? x.StatusID <= range.MaxID : true)
-                .Where(x =>members.Select(y => y.UserID).Contains(x.UserID))
+                .Where(x => members.Select(y => y.UserID).Contains(x.UserID))
+                .Distinct(statusComperer)
                 .OrderByDescending(x => x.StatusID)
                 .Skip(range.Page * range.Count)
-                .Take(range.Count).ToList();
-            if (ret.Count < range.Count && (range.SinceID != 0 || ret.Count == 0))
+                .Take(range.Count)
+                .ToList();
+
+            if (ret.Count == 0)
+                return client.Lists.Statuses(userName, listName, range);
+            else if (ret.Count < range.Count && range.SinceID != 0)
             {
-                var newrange = new StatusRange(){
+                /* var newrange = new StatusRange()
+                {
                     MaxID = ret.Count != 0 ? ret.Last().StatusID : 0,
                     Count = range.Count - ret.Count
-                };
-                return ret.AsEnumerable().Concat(client.Lists.Statuses(userName, listName, newrange)).ToList();
+                };*/
+                try
+                {
+                    return ret
+                        .AsEnumerable()
+                        .Concat(client.Lists.Statuses(userName, listName, range))
+                        .AsParallel()
+                        .Distinct(statusComperer)
+                        .OrderByDescending(x => x.StatusID)
+                        .Take(range.Count)
+                        .ToList();
+                }
+                catch(RateLimitExceededException)
+                {
+                    return ret;
+                }
             }
             else
                 return ret;
@@ -76,5 +100,20 @@ namespace NekoVampire
         /// 任意のデータを保存できます。設定ファイルに記録されます。
         /// </summary>
         public ExpandoObject LocalData { private get; set; }
+
+        private class StatusComparer :IEqualityComparer<Status>
+        {
+            public StatusComparer() { }
+
+            public bool Equals(Status x, Status y)
+            {
+                return x.StatusID.Equals(y.StatusID);
+            }
+
+            public int GetHashCode(Status obj)
+            {
+                return obj.StatusID.GetHashCode();
+            }
+        }
     }
 }

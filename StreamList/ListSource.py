@@ -9,7 +9,11 @@ from NekoVampire import StreamList
 sl = StreamList("ユーザー名", "リスト名")
 
 def GetStatuses(client, range):
-    return sl.GetStatuses(client, range)
+    try:
+        return sl.GetStatuses(client, range)
+    except RateLimitExceededException, e:
+        ProgressBlock(e.Message, True)
+        return None
 
 def StreamEntryMatches(entry):
     return sl.StreamEntryMatches(entry)
