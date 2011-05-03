@@ -9,16 +9,39 @@ namespace NekoVampire
 {
     public class StreamList
     {
-        public StreamList(string userName, string listName)
+        public StreamList(string userName, string listName) :
+            this(userName, listName, new ExpandoObject()) { }
+
+        public StreamList(string userName, string listName, ExpandoObject localData)
         {
             this.userName = userName;
             this.listName = listName;
+            this.localData = localData;
+
+            if (!((IDictionary<String, Object>)LocalData).ContainsKey("members"))
+            {
+                LocalData.members = new User[]{};
+                LocalData.members = null;
+            }
+            if (!((IDictionary<String, Object>)LocalData).ContainsKey("firsttime"))
+            {
+                LocalData.firsttime = DateTime.Now;
+            }
+            if (!((IDictionary<String, Object>)LocalData).ContainsKey("cache"))
+            {
+                LocalData.cache = new List<IEntry>();
+            }
         }
 
         private string userName;
         private string listName;
-        private IEnumerable<User> members;
+        private User[] members { get { return LocalData.members; } set { LocalData.members = value; } }
         private StatusComparer statusComperer = new StatusComparer();
+        private Random random = new Random();
+        private DateTime firsttime { get { return LocalData.firsttime; } set { LocalData.firsttime = value; } }
+        private List<IEntry> cache { get { return LocalData.cache; } set { LocalData.cache = value; } }
+
+        private TwitterClient client;
 
         /// <summary>
         /// range で指定された範囲の項目を取得します。
@@ -28,51 +51,77 @@ namespace NekoVampire
         /// <returns>エントリーのリスト</returns>
         public IEnumerable<IEntry> GetStatuses(TwitterClient client, StatusRange range)
         {
-            var statuses = client.StatusCache.GetStatuses();
-            //var statuses = client.Statuses.HomeTimeline();
+            IEntry[] ret;
+            Status[] statuses;
+            this.client = client;
 
-            IList<Status> ret;
+            try
+            {
+                if (members == null || (DateTime.Now > firsttime.AddHours(1) && client.RateLimit.Limit > 100))
+                {
+                    members = client.Lists.Members(userName, listName).ToArray();
+                    firsttime = DateTime.Now;
+                }
+                //statuses = client.Statuses.HomeTimeline(range);
 
+                if (members == null)
+                    return client.Lists.Statuses(userName, listName, range);
+            }
+            catch (Exception)
+            {
+                if (members == null)
+                    return new IEntry[] { };
+            }
             if (members == null)
-                members = client.Lists.Members(userName, listName).ToList();
+                return new IEntry[] { };
+
+            statuses = client.StatusCache.GetStatuses().ToArray();
 
             ret = statuses
                 .AsParallel()
                 .Where(x => range.SinceID != 0 ? x.StatusID >= range.SinceID : true && range.MaxID != 0 ? x.StatusID <= range.MaxID : true)
+                .Where(x => x.CreatedAt > firsttime.AddDays(-1))
+                .Where(x => x.IsDirectMessage == false)
                 .Where(x => members.Select(y => y.UserID).Contains(x.UserID))
+                .Concat(cache)
                 .Distinct(statusComperer)
-                .OrderByDescending(x => x.StatusID)
-                .Skip(range.Page * range.Count)
-                .Take(range.Count)
-                .ToList();
+                .ToArray();
 
-            if (ret.Count == 0)
+            if (ret.Length == 0)
                 return client.Lists.Statuses(userName, listName, range);
-            else if (ret.Count < range.Count && range.SinceID != 0)
+            else
             {
-                /* var newrange = new StatusRange()
-                {
-                    MaxID = ret.Count != 0 ? ret.Last().StatusID : 0,
-                    Count = range.Count - ret.Count
-                };*/
-                try
+                if (client.RateLimit.Limit < 100)
                 {
                     return ret
-                        .AsEnumerable()
-                        .Concat(client.Lists.Statuses(userName, listName, range))
+                        .AsParallel()
+                        .OrderByDescending(x => x.CreatedAt)
+                        .Skip((range.Page - 1) * range.Count)
+                        .Take(range.Count)
+                        .ToArray();
+                }
+                try
+                {
+                    IEnumerable<IEntry> lists = client.Lists.Statuses(userName, listName, new StatusRange(range.SinceID, range.MaxID, 200));
+                    return ret
+                        .Concat(lists)
                         .AsParallel()
                         .Distinct(statusComperer)
-                        .OrderByDescending(x => x.StatusID)
+                        .OrderByDescending(x => x.CreatedAt)
+                        .Skip((range.Page - 1) * range.Count)
                         .Take(range.Count)
-                        .ToList();
+                        .ToArray();
                 }
-                catch(RateLimitExceededException)
+                catch (Exception)
                 {
-                    return ret;
+                    return ret
+                        .AsParallel()
+                        .OrderByDescending(x => x.CreatedAt)
+                        .Skip((range.Page - 1) * range.Count)
+                        .Take(range.Count)
+                        .ToArray();
                 }
             }
-            else
-                return ret;
         }
 
         /// <summary>
@@ -82,7 +131,26 @@ namespace NekoVampire
         /// <returns></returns>
         public bool StreamEntryMatches(IEntry entry)
         {
-            return members != null ? members.Select(x => x.Name).Contains(entry.UserName) : false;
+            try
+            {
+                if (client != null && (members == null || DateTime.Now > firsttime.AddDays(1)))
+                {
+                    members = client.Lists.Members(userName, listName).ToArray();
+                    firsttime = DateTime.Now;
+                }
+            }
+            catch (Exception)
+            {
+            }
+            if (members != null)
+            {
+                if (members.Select(x => x.Name).Contains(entry.UserName) && entry is Status ? ((Status)entry).IsDirectMessage == false : true)
+                {
+                    cache.Add(entry);
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -99,20 +167,22 @@ namespace NekoVampire
         /// <summary>
         /// 任意のデータを保存できます。設定ファイルに記録されます。
         /// </summary>
-        public ExpandoObject LocalData { private get; set; }
+        public dynamic LocalData { get { return (dynamic)localData; } }
 
-        private class StatusComparer :IEqualityComparer<Status>
+        private ExpandoObject localData;
+
+        private class StatusComparer :IEqualityComparer<IEntry>
         {
             public StatusComparer() { }
 
-            public bool Equals(Status x, Status y)
+            public bool Equals(IEntry x, IEntry y)
             {
-                return x.StatusID.Equals(y.StatusID);
+                return x.ID.Equals(y.ID);
             }
 
-            public int GetHashCode(Status obj)
+            public int GetHashCode(IEntry obj)
             {
-                return obj.StatusID.GetHashCode();
+                return obj.ID.GetHashCode();
             }
         }
     }
