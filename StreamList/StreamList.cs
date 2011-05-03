@@ -144,7 +144,7 @@ namespace NekoVampire
             }
             if (members != null)
             {
-                if (members.Select(x => x.Name).Contains(entry.UserName) && entry is Status ? ((Status)entry).IsDirectMessage == false : true)
+                if (members.Select(x => x.Name).Contains(entry.UserName) && (entry is Status ? ((Status)entry).IsDirectMessage == false : true))
                 {
                     cache.Add(entry);
                     return true;
